@@ -18,6 +18,7 @@ import useAuth from "../hooks/useAuth";
 import Card from "../components/common/Card";
 import PageContainer from "../components/common/PageContainer";
 import SectionTitle from "../components/common/SectionTitle";
+import LoadingCard from "../components/common/LoadingCard";
 
 function MyEvents() {
   const { currentUser } = useAuth();
@@ -52,11 +53,7 @@ function MyEvents() {
       <SectionTitle subtitle="My Events" title="Your registered events" />
 
       {isLoading ? (
-        <Card className="p-8 text-center">
-          <p className="font-semibold text-slate-600">
-            Loading your registrations...
-          </p>
-        </Card>
+       <LoadingCard message="Loading your registered events..." />
       ) : registrations.length === 0 ? (
         <Card className="p-10 text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-200">

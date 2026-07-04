@@ -3,10 +3,12 @@ import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestor
 import { Megaphone } from "lucide-react";
 import { db } from "../../firebase/firebase";
 import Card from "../common/Card";
+import LoadingCard from "../common/LoadingCard";
 import SectionTitle from "../common/SectionTitle";
 
 function Announcements() {
   const [announcements, setAnnouncements] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const announcementsQuery = query(
@@ -22,6 +24,7 @@ function Announcements() {
       }));
 
       setAnnouncements(items);
+      setIsLoading(false);
     });
 
     return () => unsubscribe();
@@ -31,10 +34,12 @@ function Announcements() {
     <section className="mx-auto max-w-7xl px-4 py-10">
       <SectionTitle subtitle="Latest Notices" title="Announcements" />
 
-      {announcements.length === 0 ? (
+      {isLoading ? (
+        <LoadingCard message="Loading announcements..." />
+      ) : announcements.length === 0 ? (
         <Card className="p-6">
           <p className="text-sm text-slate-600">
-            No announcements yet. Use the Admin Demo page to add one.
+            No announcements yet. Admins can publish updates from the dashboard.
           </p>
         </Card>
       ) : (
