@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CalendarDays, Clock, MapPin, Sparkles, Radio, } from "lucide-react";
-import { collection, onSnapshot, orderBy, query, where, } from "firebase/firestore";
+import { collection, onSnapshot, query, where, } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Badge from "../components/common/Badge";
 import Button from "../components/common/Button";
@@ -22,15 +22,20 @@ function EventDetails() {
     // Keep this event's live updates fresh while the page is open.
     const updatesQuery = query(
       collection(db, "liveUpdates"),
-      where("eventId", "==", event.id),
-      orderBy("createdAt", "desc")
+      where("eventId", "==", event.id)
     );
 
     const unsubscribe = onSnapshot(updatesQuery, (snapshot) => {
-      const items = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const items = snapshot.docs
+        .map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        .sort((a, b) => {
+          const first = a.createdAt?.seconds || 0;
+          const second = b.createdAt?.seconds || 0;
+          return second - first;
+        });
 
       setLiveUpdates(items);
     });

@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { CalendarDays, Megaphone, Ticket, Radio } from "lucide-react";
 import { db } from "../../firebase/firebase";
+import useAuth from "../../hooks/useAuth";
 import Card from "../common/Card";
 import { sampleEvents } from "../../data/sampleEvents";
 
 function Stats() {
+  const { currentUser } = useAuth();
+
   const [counts, setCounts] = useState({
     registrations: 0,
     announcements: 0,
@@ -13,33 +16,49 @@ function Stats() {
   });
 
   useEffect(() => {
-    const unsubscribeRegistrations = onSnapshot(
-      collection(db, "registrations"),
-      (snapshot) => {
-        setCounts((current) => ({ ...current, registrations: snapshot.size }));
-      }
-    );
-
     const unsubscribeAnnouncements = onSnapshot(
       collection(db, "announcements"),
       (snapshot) => {
-        setCounts((current) => ({ ...current, announcements: snapshot.size }));
+        setCounts((current) => ({
+          ...current,
+          announcements: snapshot.size,
+        }));
       }
     );
 
     const unsubscribeLiveUpdates = onSnapshot(
       collection(db, "liveUpdates"),
       (snapshot) => {
-        setCounts((current) => ({ ...current, liveUpdates: snapshot.size }));
+        setCounts((current) => ({
+          ...current,
+          liveUpdates: snapshot.size,
+        }));
       }
     );
 
+    let unsubscribeRegistrations = null;
+
+    if (currentUser) {
+      unsubscribeRegistrations = onSnapshot(
+        collection(db, "registrations"),
+        (snapshot) => {
+          setCounts((current) => ({
+            ...current,
+            registrations: snapshot.size,
+          }));
+        }
+      );
+    }
+
     return () => {
-      unsubscribeRegistrations();
       unsubscribeAnnouncements();
       unsubscribeLiveUpdates();
+
+      if (unsubscribeRegistrations) {
+        unsubscribeRegistrations();
+      }
     };
-  }, []);
+  }, [currentUser]);
 
   const stats = [
     { label: "Upcoming Events", value: sampleEvents.length, icon: CalendarDays },
