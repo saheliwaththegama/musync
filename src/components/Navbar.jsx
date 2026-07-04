@@ -4,11 +4,9 @@ import { auth } from "../firebase/firebase";
 import { appConfig } from "../config/appConfig";
 import useAuth from "../hooks/useAuth";
 
-// Main navigation bar shown on every page.
 function Navbar() {
   const { currentUser } = useAuth();
 
-  // Signs the current user out of Firebase.
   async function handleLogout() {
     try {
       await signOut(auth);
@@ -17,7 +15,6 @@ function Navbar() {
     }
   }
 
-  // Shared style for navigation links.
   const navLinkStyle = ({ isActive }) =>
     isActive
       ? "border-b-2 border-amber-300 pb-1 text-slate-950"
@@ -25,11 +22,9 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 shadow-sm backdrop-blur">
-      {/* Brand colour strip */}
       <div className="h-1 bg-amber-200" />
 
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        {/* Logo and application name */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src={appConfig.logo}
@@ -48,7 +43,6 @@ function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden items-center gap-6 md:flex">
           <NavLink to="/" className={navLinkStyle}>
             Home
@@ -62,11 +56,18 @@ function Navbar() {
             Calendar
           </NavLink>
 
-          <NavLink to="/register" className={navLinkStyle}>
-            Register
-          </NavLink>
+          {currentUser && (
+            <>
+              <NavLink to="/register" className={navLinkStyle}>
+                Register
+              </NavLink>
 
-          {/* Show different actions depending on login status */}
+              <NavLink to="/my-events" className={navLinkStyle}>
+                My Events
+              </NavLink>
+            </>
+          )}
+
           {currentUser ? (
             <div className="flex items-center gap-3">
               <span className="text-sm font-medium text-slate-600">

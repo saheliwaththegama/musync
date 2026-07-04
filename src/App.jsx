@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
@@ -8,7 +9,7 @@ import CalendarPage from "./pages/CalendarPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import ProtectedRoute from "./components/ProtectedRoute";
+import MyEvents from "./pages/MyEvents";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/events/:eventId" element={<EventDetails />} />
         <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
         <Route
           path="/register"
           element={
@@ -28,8 +32,15 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+
+        <Route
+          path="/my-events"
+          element={
+            <ProtectedRoute>
+              <MyEvents />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       <Footer />
@@ -38,3 +49,4 @@ function App() {
 }
 
 export default App;
+
