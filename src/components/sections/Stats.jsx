@@ -1,14 +1,78 @@
-import { CalendarDays, Megaphone, Ticket, Users } from "lucide-react";
+import { useEffect, useState } from "react";
+import { collection, onSnapshot } from "firebase/firestore";
+import { CalendarDays, Megaphone, Ticket, Radio } from "lucide-react";
+import { db } from "../../firebase/firebase";
 import Card from "../common/Card";
-
-const stats = [
-  { label: "Upcoming Events", value: "18", icon: CalendarDays },
-  { label: "Registrations", value: "740", icon: Ticket },
-  { label: "Announcements", value: "12", icon: Megaphone },
-  { label: "Participants", value: "1.2k", icon: Users },
-];
+import { sampleEvents } from "../../data/sampleEvents";
 
 function Stats() {
+  const [counts, setCounts] = useState({
+    registrations: 0,
+    announcements: 0,
+    liveUpdates: 0,
+  });
+
+  useEffect(() => {
+    const unsubscribeRegistrations = onSnapshot(
+      collection(db, "registrations"),
+      (snapshot) => {
+        setCounts((current) => ({
+          ...current,
+          registrations: snapshot.size,
+        }));
+      }
+    );
+
+    const unsubscribeAnnouncements = onSnapshot(
+      collection(db, "announcements"),
+      (snapshot) => {
+        setCounts((current) => ({
+          ...current,
+          announcements: snapshot.size,
+        }));
+      }
+    );
+
+    const unsubscribeLiveUpdates = onSnapshot(
+      collection(db, "liveUpdates"),
+      (snapshot) => {
+        setCounts((current) => ({
+          ...current,
+          liveUpdates: snapshot.size,
+        }));
+      }
+    );
+
+    return () => {
+      unsubscribeRegistrations();
+      unsubscribeAnnouncements();
+      unsubscribeLiveUpdates();
+    };
+  }, []);
+
+  const stats = [
+    {
+      label: "Upcoming Events",
+      value: sampleEvents.length,
+      icon: CalendarDays,
+    },
+    {
+      label: "Registrations",
+      value: counts.registrations,
+      icon: Ticket,
+    },
+    {
+      label: "Announcements",
+      value: counts.announcements,
+      icon: Megaphone,
+    },
+    {
+      label: "Live Updates",
+      value: counts.liveUpdates,
+      icon: Radio,
+    },
+  ];
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-12">
       <div className="grid gap-5 md:grid-cols-4">
