@@ -47,9 +47,14 @@ function Footer() {
         <div>
           <h3 className="font-bold text-amber-200">Project Note</h3>
 
-          <p className="mt-4 text-sm leading-6 text-slate-300">
-            Developed as a web application project for school event management,
-            digital registration, and real-time communication.
+          <p className="text-center text-sm text-slate-500">
+            <span className="font-semibold">
+              {appConfig.appName} {appConfig.version}
+            </span>
+
+            <br />
+
+            © 2026 {appConfig.schoolName}, {appConfig.location}
           </p>
         </div>
       </div>
