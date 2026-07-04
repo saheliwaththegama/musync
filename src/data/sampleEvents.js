@@ -11,7 +11,7 @@ export const sampleEvents = [
     category: "Exhibition",
     date: "2026-08-12",
     time: "9.00 AM",
-    venue: "Main Hall",
+    venue: "School Premises",
     description:
       "Explore creative science and technology projects presented by talented students.",
     longDescription:
@@ -29,7 +29,7 @@ export const sampleEvents = [
     category: "Sports",
     date: "2026-08-20",
     time: "8.30 AM",
-    venue: "School Grounds",
+    venue: "Sugathadasa Stadium",
     description:
       "Celebrate teamwork, determination, and school spirit through exciting competitions.",
     longDescription:
@@ -43,7 +43,7 @@ export const sampleEvents = [
     category: "Academic",
     date: "2026-09-05",
     time: "2.00 PM",
-    venue: "Auditorium",
+    venue: "Higgins Hall",
     description:
       "Witness inspiring debates where students present ideas with confidence.",
     longDescription:
@@ -57,11 +57,11 @@ export const sampleEvents = [
     category: "Cultural",
     date: "2026-09-18",
     time: "5.30 PM",
-    venue: "Open Air Theatre",
+    venue: "Peter De Abrew Memorial Auditorium",
     description:
-      "Enjoy music, dance, drama, and artistic performances from talented students.",
+      "Calling everyone who has passion for therter to enjoy music, dance, drama, and artistic performances from talented students.",
     longDescription:
-      "The Music & Cultural Festival celebrates creativity through music, dance, drama, and artistic expression. It gives students a platform to perform and share cultural talent with the school community.",
+      "The Music & Cultural Festival celebrates creativity through artistic expressions. It gives students a platform to perform and share cultural talent with the school community.",
     image:culturalImage,
     highlights: ["Music performances", "Dance items", "Drama showcase"],
   },
@@ -85,13 +85,13 @@ export const sampleEvents = [
     category: "Service",
     date: "2026-10-15",
     time: "8.00 AM",
-    venue: "School Front Garden",
+    venue: "Peter De Abrew Memorial Auditorium",
     description:
-      "Join meaningful activities that promote leadership, teamwork, and responsibility.",
+      "Join meaningful activities that promote awareness, and responsibility.",
     longDescription:
       "Community Service Day encourages students to take part in meaningful activities that support the school and wider community. The programme includes environmental care, donation drives, and awareness activities.",
     image:communityServiceImage,
-    highlights: ["Tree planting", "Donation collection", "Awareness activities"],
+    highlights: [ "Donation collection", "Awareness activities"],
   },
 ];
 
