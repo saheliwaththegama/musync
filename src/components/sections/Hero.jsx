@@ -7,11 +7,9 @@ import { sampleEvents } from "../../data/sampleEvents";
 function Hero() {
   const heroEvents = sampleEvents.slice(0, 4);
   const [activeIndex, setActiveIndex] = useState(0);
-
   const activeEvent = heroEvents[activeIndex];
 
   useEffect(() => {
-    // Rotate the main event every few seconds to keep the homepage lively.
     const timer = setInterval(() => {
       setActiveIndex((current) => (current + 1) % heroEvents.length);
     }, 5000);
@@ -21,22 +19,22 @@ function Hero() {
 
   return (
     <section className="bg-slate-950 text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-20">
         <div>
           <p className="mb-4 inline-flex rounded-full bg-amber-200 px-4 py-2 text-sm font-semibold text-slate-900">
             {appConfig.tagline}
           </p>
 
-          <h1 className="text-4xl font-extrabold leading-tight md:text-6xl">
+          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
             Stay in sync with every school moment
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
             Musync brings school events, announcements, registrations,
             calendars, and live updates into one simple platform.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
             <Button to="/events" variant="accent">
               Explore Events
             </Button>
@@ -52,17 +50,17 @@ function Hero() {
             <img
               src={activeEvent.image}
               alt={activeEvent.title}
-              className="h-[420px] w-full object-cover"
+              className="h-[340px] w-full object-cover sm:h-[420px]"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
-            <div className="absolute bottom-0 left-0 right-0 p-6">
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
               <span className="rounded-full bg-amber-200 px-3 py-1 text-xs font-bold text-slate-900">
                 {activeEvent.category}
               </span>
 
-              <h2 className="mt-4 text-3xl font-extrabold">
+              <h2 className="mt-4 text-2xl font-extrabold sm:text-3xl">
                 {activeEvent.title}
               </h2>
 
@@ -70,7 +68,7 @@ function Hero() {
                 {activeEvent.description}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-200">
+              <div className="mt-4 grid gap-2 text-sm text-slate-200 sm:flex sm:flex-wrap sm:gap-4">
                 <p className="flex items-center gap-2">
                   <CalendarDays size={17} />
                   {activeEvent.date} at {activeEvent.time}
@@ -82,12 +80,12 @@ function Hero() {
                 </p>
               </div>
 
-              <div className="mt-5 flex items-center justify-between gap-4">
+              <div className="mt-5 grid gap-4 sm:flex sm:items-center sm:justify-between">
                 <Button to={`/events/${activeEvent.id}`} variant="accent">
                   Explore Event
                 </Button>
 
-                <div className="flex gap-2">
+                <div className="flex justify-center gap-2 sm:justify-end">
                   {heroEvents.map((event, index) => (
                     <button
                       key={event.id}
