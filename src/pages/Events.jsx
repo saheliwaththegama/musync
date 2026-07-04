@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, XCircle } from "lucide-react";
 import EventCard from "../components/EventCard";
 import PageContainer from "../components/common/PageContainer";
 import SectionTitle from "../components/common/SectionTitle";
@@ -10,11 +10,13 @@ function Events() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredEvents = useMemo(() => {
+    const searchValue = searchTerm.toLowerCase().trim();
+
     return sampleEvents.filter((event) => {
       const matchesSearch =
-        event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        event.venue.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        event.category.toLowerCase().includes(searchTerm.toLowerCase());
+        event.title.toLowerCase().includes(searchValue) ||
+        event.venue.toLowerCase().includes(searchValue) ||
+        event.category.toLowerCase().includes(searchValue);
 
       const matchesCategory =
         selectedCategory === "All" || event.category === selectedCategory;
@@ -22,6 +24,11 @@ function Events() {
       return matchesSearch && matchesCategory;
     });
   }, [searchTerm, selectedCategory]);
+
+  function clearFilters() {
+    setSearchTerm("");
+    setSelectedCategory("All");
+  }
 
   return (
     <PageContainer>
@@ -31,7 +38,7 @@ function Events() {
       />
 
       <div className="mb-8 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+        <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
           <div className="relative">
             <Search
               size={20}
@@ -40,40 +47,59 @@ function Events() {
 
             <input
               type="text"
-              placeholder="Search by event, venue, or category"
+              placeholder="Search events by title, venue, or category"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              className="w-full rounded-full border border-slate-300 py-3 pl-12 pr-4 text-sm outline-none focus:border-slate-900 focus:ring-2 focus:ring-amber-200"
+              className="w-full rounded-full border border-slate-300 py-3 pl-12 pr-4 text-sm outline-none transition focus:border-slate-900 focus:ring-2 focus:ring-amber-200"
             />
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            {eventCategories.map((category) => {
-              const isActive = selectedCategory === category;
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+          >
+            <XCircle size={17} />
+            Clear
+          </button>
+        </div>
 
-              return (
-                <button
-                  key={category}
-                  type="button"
-                  onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                    isActive
-                      ? "bg-slate-900 text-white"
-                      : "bg-amber-100 text-slate-800 hover:bg-amber-200"
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {eventCategories.map((category) => {
+            const isActive = selectedCategory === category;
+
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setSelectedCategory(category)}
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  isActive
+                    ? "bg-slate-900 text-white"
+                    : "bg-amber-100 text-slate-800 hover:bg-amber-200"
+                }`}
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      <p className="mb-5 text-sm font-medium text-slate-500">
-        Showing {filteredEvents.length} event
-        {filteredEvents.length !== 1 ? "s" : ""}
-      </p>
+      <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-center">
+        <p className="text-sm font-semibold text-slate-600">
+          Showing{" "}
+          <span className="text-slate-900">{filteredEvents.length}</span>{" "}
+          event{filteredEvents.length !== 1 ? "s" : ""}
+        </p>
+
+        {(searchTerm || selectedCategory !== "All") && (
+          <p className="text-sm text-slate-500">
+            Filter: {selectedCategory}
+            {searchTerm ? ` • "${searchTerm}"` : ""}
+          </p>
+        )}
+      </div>
 
       {filteredEvents.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-3">
@@ -83,10 +109,25 @@ function Events() {
         </div>
       ) : (
         <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center">
-          <h3 className="text-xl font-bold text-slate-900">No events found</h3>
-          <p className="mt-2 text-slate-500">
-            Try another search word or choose a different category.
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
+            <Search className="text-slate-900" />
+          </div>
+
+          <h3 className="mt-5 text-2xl font-extrabold text-slate-900">
+            No matching events found
+          </h3>
+
+          <p className="mx-auto mt-3 max-w-md text-slate-500">
+            Try another keyword or choose a different event category.
           </p>
+
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="mt-6 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-950"
+          >
+            Clear Search
+          </button>
         </div>
       )}
     </PageContainer>
