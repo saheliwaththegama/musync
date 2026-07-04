@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
@@ -10,6 +11,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MyEvents from "./pages/MyEvents";
+import AdminDemo from "./pages/AdminDemo";
 
 function App() {
   return (
@@ -39,6 +41,15 @@ function App() {
             <ProtectedRoute>
               <MyEvents />
             </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin-demo"
+          element={
+            <AdminRoute>
+              <AdminDemo />
+            </AdminRoute>
           }
         />
       </Routes>

@@ -5,7 +5,7 @@ import { appConfig } from "../config/appConfig";
 import useAuth from "../hooks/useAuth";
 
 function Navbar() {
-  const { currentUser } = useAuth();
+  const { currentUser, userProfile } = useAuth();
 
   async function handleLogout() {
     try {
@@ -36,7 +36,6 @@ function Navbar() {
             <h1 className="text-xl font-extrabold tracking-tight text-slate-900">
               {appConfig.appName}
             </h1>
-
             <p className="text-xs font-medium text-slate-500">
               {appConfig.schoolName}
             </p>
@@ -66,6 +65,12 @@ function Navbar() {
                 My Events
               </NavLink>
             </>
+          )}
+
+          {userProfile?.role === "admin" && (
+            <NavLink to="/admin-demo" className={navLinkStyle}>
+              Admin Dashboard
+            </NavLink>
           )}
 
           {currentUser ? (
