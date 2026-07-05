@@ -45,22 +45,20 @@ function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold text-amber-200">Project Note</h3>
+          <h3 className="font-bold text-amber-200">Competition Project</h3>
 
-          <p className="text-center text-sm text-slate-500">
-            <span className="font-semibold">
-              {appConfig.appName} {appConfig.version}
-            </span>
-
-            <br />
-
-            © 2026 {appConfig.schoolName}, {appConfig.location}
+          <p className="mt-4 max-w-sm text-sm leading-6 text-slate-300">
+            Developed as a web development project for the ICT Day 2026
+            competition organized by the Computer Society of Royal College.
           </p>
         </div>
       </div>
 
-      <div className="border-t border-slate-800 px-4 py-4 text-center text-xs text-slate-400">
-        © 2026 {appConfig.appName}. Built for the Web Development Competition.
+      <div className="border-t border-slate-800 px-4 py-4 text-center text-xs leading-6 text-slate-400">
+        <p>
+          {appConfig.appName} {appConfig.version} | © 2026{" "}
+          {appConfig.schoolName}, {appConfig.location}
+        </p>
       </div>
     </footer>
   );
