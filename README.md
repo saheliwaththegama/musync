@@ -8,6 +8,14 @@
 
 **School:** Musaeus College, Colombo 07, Sri Lanka
 
+## 🌐 Live Website
+
+https://musync-phi.vercel.app/
+
+## 💻 GitHub Repository
+
+https://github.com/saheliwaththegama/musync
+
 ---
 
 ## About My Project
@@ -43,6 +51,13 @@ At school, many event details are shared in different ways, and we can sometimes
 - Publish live event updates
 - Delete live event updates
 
+## General Features
+
+- Responsive Design
+- Interactive Calendar
+- Modern User Interface
+- Firebase Authentication
+- Cloud Firestore Database
 ---
 
 ## Technologies Used
@@ -55,6 +70,8 @@ At school, many event details are shared in different ways, and we can sometimes
 - React Router
 - FullCalendar
 - Lucide React Icons
+- Git & GitHub
+- Vercel
 
 ---
 
@@ -65,15 +82,30 @@ Musync
 │
 ├── public
 ├── src
+│   ├── assets
+│   ├── components
+│   ├── config
+│   ├── contexts
+│   ├── data
+│   ├── firebase
+│   ├── hooks
+│   ├── pages
+│   └── utils
+│
+├── .env.example
 ├── package.json
 ├── vite.config.js
-├── .env.example
 └── README.md
-```
 
 ---
 
 ## How to Run the Project
+
+Clone the repository.
+
+```bash
+git clone https://github.com/saheliwaththegama/musync.git
+```
 
 Install the required packages.
 
@@ -99,20 +131,41 @@ npm run build
 
 ## Screenshots
 
-Screenshots will be added before the final submission.
+### Home Page
+![Home Page](./public/screenshots/home.png)
 
-- Home Page
-- Events Page
-- Calendar
-- Registration Page
-- My Events
-- Admin Dashboard
+### Events Page
+![Events Page](./public/screenshots/events.png)
+
+### Calendar
+![Calendar](./public/screenshots/calendar.png)
+
+### Sign Up
+![Sign Up](./public/screenshots/signup.png)
+
+### Sign In
+![Sign In](./public/screenshots/signin.png)
+
+### Registration
+![Registration](./public/screenshots/register.png)
+
+### Registration Successful
+![Registration Successful](./public/screenshots/registration-success.png)
+
+### My Events
+![My Events](./public/screenshots/my-events.png)
+
+### Admin Dashboard
+![Admin Dashboard](./public/screenshots/admin-dashboard.png)
+
+### Mobile View
+![Mobile View](./public/screenshots/mobile-view.png)
 
 ---
 
 ## What I Learned
 
-This project helped me improve my knowledge of:
+This project helped me improve my knowledge of:-
 
 - React
 - Firebase
@@ -121,18 +174,38 @@ This project helped me improve my knowledge of:
 - Git and GitHub
 - Problem solving
 - Software development
-
+This project also gave me confidence in developing a complete web application and deployment.
 ---
 
 ## Future Improvements
 
-If I continue developing this project, I would like to add:
+If I continue developing this project, I would like to add:-
 
 - QR code event tickets
 - Email notifications
 - Event attendance using QR scanning
 - More event categories
+- Event Photo Gallery
+- Admin Event Management
+- School Club Management
 
+
+
+---
+
+## Demo Accounts for Evaluation
+
+Following demo accounts can be use to test the system.
+
+### Student Account
+
+Email: student@musync.com  
+Password: MuStudent1#
+
+### Admin Account
+
+Email: admin@musync.com  
+Password: MuAdmin1#
 
 ---
 
