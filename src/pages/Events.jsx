@@ -7,8 +7,10 @@ import SectionTitle from "../components/common/SectionTitle";
 import { eventCategories, sampleEvents } from "../data/sampleEvents";
 
 function Events() {
- const [searchParams] = useSearchParams(); 
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   useEffect(() => {
     const categoryFromUrl = searchParams.get("category");
 
@@ -16,7 +18,6 @@ function Events() {
       setSelectedCategory(categoryFromUrl);
     }
   }, [searchParams]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredEvents = useMemo(() => {
     const searchValue = searchTerm.toLowerCase().trim();
@@ -34,9 +35,20 @@ function Events() {
     });
   }, [searchTerm, selectedCategory]);
 
+  function handleCategoryChange(category) {
+    setSelectedCategory(category);
+
+    if (category === "All") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category });
+    }
+  }
+
   function clearFilters() {
     setSearchTerm("");
     setSelectedCategory("All");
+    setSearchParams({});
   }
 
   return (
@@ -81,7 +93,7 @@ function Events() {
               <button
                 key={category}
                 type="button"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryChange(category)}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                   isActive
                     ? "bg-slate-900 text-white"
@@ -97,8 +109,7 @@ function Events() {
 
       <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-center">
         <p className="text-sm font-semibold text-slate-600">
-          Showing{" "}
-          <span className="text-slate-900">{filteredEvents.length}</span>{" "}
+          Showing <span className="text-slate-900">{filteredEvents.length}</span>{" "}
           event{filteredEvents.length !== 1 ? "s" : ""}
         </p>
 
