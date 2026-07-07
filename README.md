@@ -1,4 +1,5 @@
 # Musync – School Event Management Platform
+![Home](./public/screenshots/home.png)
 
 ## Web Development Competition 2026
 
@@ -8,13 +9,13 @@
 
 **School:** Musaeus College, Colombo 07, Sri Lanka
 
-## 🌐 Live Website
+## 🌐 Live Demo
 
-https://musync-phi.vercel.app/
+[Live Demo] (https://musync-phi.vercel.app/)
 
 ## 💻 GitHub Repository
 
-https://github.com/saheliwaththegama/musync
+[GitHub Repository] (https://github.com/saheliwaththegama/musync) 
 
 ---
 
@@ -33,7 +34,7 @@ At school, many event details are shared in different ways, and we can sometimes
 
 ## Main Features
 
-### For Students
+### Students Features
 
 - Create an account and sign in
 - View upcoming school events
@@ -44,7 +45,7 @@ At school, many event details are shared in different ways, and we can sometimes
 - Receive announcements
 - View live event updates
 
-### For Administrators
+### Administrators Features
 
 - Publish announcements
 - Delete announcements
@@ -174,7 +175,7 @@ This project helped me improve my knowledge of:-
 - Git and GitHub
 - Problem solving
 - Software development
-This project also gave me confidence in developing a complete web application and deployment.
+This project also gave me confidence in developing and deploying a complete web application.
 ---
 
 ## Future Improvements
@@ -195,7 +196,7 @@ If I continue developing this project, I would like to add:-
 
 ## Demo Accounts for Evaluation
 
-Following demo accounts can be use to test the system.
+The following demo accounts are provided to help the judges evaluate all features of the application.
 
 ### Student Account
 
