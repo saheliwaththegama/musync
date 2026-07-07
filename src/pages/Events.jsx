@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Search, XCircle } from "lucide-react";
 import EventCard from "../components/EventCard";
 import PageContainer from "../components/common/PageContainer";
@@ -6,7 +7,15 @@ import SectionTitle from "../components/common/SectionTitle";
 import { eventCategories, sampleEvents } from "../data/sampleEvents";
 
 function Events() {
+ const [searchParams] = useSearchParams(); 
   const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get("category");
+
+    if (categoryFromUrl && eventCategories.includes(categoryFromUrl)) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [searchParams]);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredEvents = useMemo(() => {

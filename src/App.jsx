@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import MyEvents from "./pages/MyEvents";
-import AdminDemo from "./pages/AdminDemo";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -45,10 +45,10 @@ function App() {
         />
 
         <Route
-          path="/admin-demo"
+          path="/admin"
           element={
             <AdminRoute>
-              <AdminDemo />
+              <AdminDashboard />
             </AdminRoute>
           }
         />
