@@ -12,9 +12,9 @@
 
 ## About My Project
 
-Musync is a school event management website that I developed for the **Web Development Competition organized by the Computer Society of Royal College for ICT Day 2026**.
+Musync is a school event management website that I developed for the **Web Development Competition organized by the Computer Society of Royal College for their annual ICT Day 2026**.
 
-The main goal of this project is to make it easier for students to find school events, register online, receive announcements, and stay updated with school activities in one place.
+The main goal of this project is to make it easier for students and parents to find school events, register online, receive announcements, and stay updated with school activities in one place.
 
 While developing this project, I learned how to build a complete web application using modern web technologies and cloud services.
 
@@ -132,7 +132,7 @@ If I continue developing this project, I would like to add:
 - Email notifications
 - Event attendance using QR scanning
 - More event categories
-- Better event reports
+
 
 ---
 
@@ -152,4 +152,4 @@ Grade 9
 
 Musaeus College, Colombo 07, Sri Lanka
 
-For the **Web Development Competition organized by the Computer Society of Royal College for ICT Day 2026**.
+For the **Web Development Competition organized by the Computer Society of Royal College for their annual ICT Day 2026**.

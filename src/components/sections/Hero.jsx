@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CalendarDays, MapPin } from "lucide-react";
 import Button from "../common/Button";
 import { appConfig } from "../../config/appConfig";
+import Countdown from "../Countdown";
 import { sampleEvents } from "../../data/sampleEvents";
 
 function Hero() {
@@ -78,6 +79,12 @@ function Hero() {
                   <MapPin size={17} />
                   {activeEvent.venue}
                 </p>
+              </div>
+              <div className="mt-5 rounded-2xl bg-white/10 p-2">
+                <p className="mb-3 text-sm font-semibold text-amber-200">
+                  Countdown to this event
+                </p>
+                <Countdown date={activeEvent.date} />
               </div>
 
               <div className="mt-5 grid gap-4 sm:flex sm:items-center sm:justify-between">
