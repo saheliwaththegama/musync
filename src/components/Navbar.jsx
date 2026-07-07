@@ -62,7 +62,7 @@ function Navbar() {
           )}
 
           {userProfile?.role === "admin" && (
-            <NavLink to="/admin-demo" className={navLinkStyle}>
+            <NavLink to="/admin" className={navLinkStyle}>
               Admin Dashboard
             </NavLink>
           )}
@@ -125,7 +125,7 @@ function Navbar() {
             )}
 
             {userProfile?.role === "admin" && (
-              <Link to="/admin-demo" onClick={() => setMenuOpen(false)} className={mobileLinkStyle}>
+              <Link to="/admin" onClick={() => setMenuOpen(false)} className={mobileLinkStyle}>
                 Admin Dashboard
               </Link>
             )}
